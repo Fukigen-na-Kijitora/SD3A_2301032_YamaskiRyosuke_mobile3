@@ -1,0 +1,24 @@
+services:
+  flutter:
+    # 重複起動防止コンテナ名（.env の CONTAINER_NAME で指定）
+    container_name: flutter_devcontainer_${CONTAINER_NAME}
+    # M1 Mac環境ではARM64ベースでx86_64バイナリをRosetta 2経由で実行
+    platform: linux/${ARCH}
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # .envファイルからARCH変数を読み込む
+        - ARCH=${ARCH}
+    volumes:
+      - ..:/home/developer/workspace:cached
+    command: /home/developer/workspace/.devcontainer/start-vnc.sh > /home/developer/workspace/start-vnc.log 2>&1
+    ports:
+      - "5901:5901"
+    user: "developer"
+    tty: true
+    # コンテナ起動時にVNCを起動
+    # entrypoint: sh -c "sleep infinity"

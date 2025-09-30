@@ -1,0 +1,36 @@
+{
+  "name": "Flutter Project",
+  "postCreateCommand": "/home/developer/workspace/.devcontainer/start-vnc.sh; echo -e '\\n=====================\\nLinuxデスクトップFlutterアプリの作成・実行手順\\n1. flutter create <プロジェクト名>\\n2. cd <プロジェクト名>\\n3. flutter run\\n=====================\\n'",
+  "workspaceFolder": "/home/developer/workspace",
+  "dockerComposeFile": [
+    "docker-compose.yml"
+  ],
+  "service": "flutter",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "files.autoSave": "onFocusChange",
+        "[dart]": {
+          "editor.formatOnSave": true,
+          "editor.formatOnType": true,
+          "editor.rulers": [
+            80
+          ],
+          "editor.selectionHighlight": false,
+          "editor.tabCompletion": "onlySnippets",
+          "editor.wordBasedSuggestions": "off"
+        },
+        "dart.flutterSdkPath": "/opt/flutter"
+      },
+      "extensions": [
+        "Dart-Code.flutter",
+        "Dart-Code.dart-code",
+        "ms-vscode-remote.remote-containers",
+        "ms-azuretools.vscode-containers",
+        "GitHub.codespaces"
+      ]
+    }
+  },
+  "remoteUser": "developer",
+  "postStartCommand": "/bin/bash /workspaces/flutter2025_template/.devcontainer/compose-up.sh && pkill -f 'Xvfb :1' || true && pkill -f 'xfwm4' || true && pkill -f 'x11vnc' || true && [ -f /tmp/.X1-lock ] && rm -f /tmp/.X1-lock || true"
+}
