@@ -89,4 +89,28 @@ class _TextInputWidgetState extends State<TextInputWidget> {
         ],
       )
     );
+  }Widget _createTextArea() {
+    return Card(
+      margin: const EdgeInsets.symmetric(
+        horizontal: 10.0, 
+        vertical: 5.0
+      ),
+      child: TextField(
+        controller: _controller,
+        decoration: const InputDecoration(
+          hintText: '入力してください'
+        ),onChanged: (String value) {
+          print(value);
+        },
+        onSubmitted: (String value) {
+          setState(() {
+            if (value.isEmpty == false) {
+              todoList.add(value);
+              _controller.clear();
+            }
+          });
+        },
+      ),
+    );
   }
+}
