@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MainPage());
 }
 
-cclass MainPage extends StatelessWidget {
+class MainPage extends StatelessWidget {
   const MainPage({super.key});
   @override
   Widget build(BuildContext context) {
@@ -54,52 +54,47 @@ class _TextInputWidgetState extends State<TextInputWidget> {
       ),
     );
   }
+
   @override
   void dispose() {
     super.dispose();
     _controller.dispose();
   }
+
 //todoカードを作成するWidget
   Widget _createTodoCard(String title) {
     return Card(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 10.0, 
-        vertical: 5.0
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          ListTile(title: Text(title)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  // 完了したときの処理
-                },
-                child: const Text('完了')
-              ),ElevatedButton(
-                onPressed: () {
-                  // 削除したときの処理
-                },
-                child: const Text('削除')
-              )
-            ],
-          )
-        ],
-      )
-    );
-  }Widget _createTextArea() {
+        margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            ListTile(title: Text(title)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      // 完了したときの処理
+                    },
+                    child: const Text('完了')),
+                ElevatedButton(
+                    onPressed: () {
+                      // 削除したときの処理
+                    },
+                    child: const Text('削除'))
+              ],
+            )
+          ],
+        ));
+  }
+
+  Widget _createTextArea() {
     return Card(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 10.0, 
-        vertical: 5.0
-      ),
+      margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
       child: TextField(
         controller: _controller,
-        decoration: const InputDecoration(
-          hintText: '入力してください'
-        ),onChanged: (String value) {
+        decoration: const InputDecoration(hintText: '入力してください'),
+        onChanged: (String value) {
           print(value);
         },
         onSubmitted: (String value) {
